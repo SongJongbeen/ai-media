@@ -7,3 +7,4 @@ feedparser==6.0.10
 beautifulsoup4==4.12.2
 pydantic==2.5.0
 pandas
+newsapi-python
