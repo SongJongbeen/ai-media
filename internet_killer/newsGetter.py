@@ -1,4 +1,6 @@
 import os
+import csv
+import datetime
 from newsapi import NewsApiClient
 from dotenv import load_dotenv
 
@@ -20,4 +22,12 @@ class newsGetter:
                 "date": article["publishedAt"]
             }
             self.news.append(news_item)
+
+        today = datetime.datetime.now().strftime("%Y-%m-%d")
+        with open(f"data/{today}.csv", "w", newline="", encoding="utf-8") as file:
+            writer = csv.writer(file)
+            writer.writerow(["title", "description", "date"])
+            for news in self.news:
+                writer.writerow([news["title"], news["description"], news["date"]])
+
         return self.news
